@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>메뉴</title>
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            <img src="{{ url_for('static', filename='M.png') }}" alt="로고">
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                <li><a href="#">Community</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

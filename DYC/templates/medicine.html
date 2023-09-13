@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>약품 정보</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='medicine.css') }}">
+</head>
+<body>
+    {% include 'menu.html' %}
+
+    <main>
+        <h1>약품 정보</h1>
+        <h2>진단명: {{ diagnosis }}</h2>
+        <div id="medicines">
+            <!-- 약품 정보를 여기에 표시할 영역 -->
+        </div>
+        
+        <script>
+            const medicineResults = {{ medicine_results | tojson | safe }};
+            const medicinesSection = document.getElementById('medicines');
+            
+            if (medicineResults.length > 0) {
+                for (const medicineItem of medicineResults) {
+                    medicinesSection.innerHTML += `
+                        <p>약품명: ${medicineItem['약품명']}</p>
+                        <p>처방 횟수: ${medicineItem['개수']}</p>
+                        <hr>
+                    `;
+                }
+            } else {
+                medicinesSection.innerHTML = '<p>약품 정보가 없습니다.</p>';
+            }
+        </script>
+    </main>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>퀴즈</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='quiz.css') }}">
+    <style>
+        /* 추가한 CSS 스타일 */
+        #quiz-container {
+            margin: 20px;
+        }
+
+        #quiz-number {
+            font-weight: bold;
+        }
+
+        #options {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #options li {
+            margin-bottom: 10px;
+        }
+
+        #feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        #navigation {
+            margin-top: 20px;
+        }
+
+        /* 추가한 CSS 스타일 끝 */
+    </style>
+</head>
+<body>
+    {% include 'menu.html' %}
+    
+    
+    <div id="quiz-container">
+        <!-- 퀴즈 번호와 문제가 여기에 나타납니다. -->
+        <p id="quiz-number">퀴즈 번호: {{ current_quiz_index + 1 }}</p>
+        <p>{{ questions[current_quiz_index][0] }}</p>
+        
+        <!-- 퀴즈 옵션들이 여기에 나타납니다. -->
+        <form action="/check_answer" method="POST">
+            <ul id="options">
+                {% for option_index, option in questions[current_quiz_index][1] %}
+                    <li>
+                        <input type="radio" name="answer" value="{{ option_index }}">{{ option }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <input type="hidden" name="correct_index" value="{{ questions[current_quiz_index][1][current_quiz_index][0] }}">
+            <input type="submit" value="답 확인">
+        </form>
+    </div>
+
+    <!-- 피드백을 여기에 나타냅니다. -->
+    {% if feedback %}
+    <div id="feedback">
+        <p>{{ feedback }}</p>
+    </div>
+    {% endif %}
+
+    <div id="navigation">
+        <a href="/prev"><button>이전</button></a>
+        <a href="/next"><button>다음</button></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>검색 결과</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+    {% include 'menu.html' %}
+    
+    <main>
+        <h1>검색 결과</h1>
+        <div id="diagnosis">
+            <!-- 검색 결과를 여기에 표시할 영역 -->
+        </div>
+
+        <div id="medicines">
+            <!-- 약품 검색 결과를 여기에 표시할 영역 -->
+        </div>
+
+        <script>
+            async function fetchDataFromServer() {
+                try {
+                    const symptomText = window.location.search.split('=')[1];
+
+                    const response = await fetch('/search', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `symptom=${symptomText}`,
+                    });
+
+                    const data = await response.json();
+
+                    const diagnosisResults = document.getElementById('diagnosis');
+                    diagnosisResults.innerHTML = '';
+
+                    if (data.length > 0) {
+                        for (const item of data) {
+                            diagnosisResults.innerHTML += `
+                                <p>${item['진단명(한국어)']}</p>
+                                <p>진단횟수: ${item['카운트']}</p>
+                                <p><a href="/medicine/${item['진단명(한국어)']}">약품 정보 보기</a></p>
+                                <hr>
+                            `;
+                        }
+                    } else {
+                        diagnosisResults.innerHTML = '<p>검색 결과 없음</p>';
+                    }
+
+                } catch (error) {
+                    console.error('데이터를 가져오는 중 오류가 발생했습니다:', error);
+                }
+            }
+
+            // 페이지 로딩 시 데이터 가져오기
+            window.onload = fetchDataFromServer();
+        </script>
+    </main>
+</body>
+</html>

@@ -1,0 +1,86 @@
+/* medicine.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+}
+
+#header {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+#logo img {
+    width: 200px;
+    height: auto;
+}
+
+#menu {
+    margin-right: 20px;
+}
+
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#menu ul li {
+    margin-right: 20px;
+}
+
+#menu ul li a {
+    color: blue;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+#menu ul li a:hover {
+    color: violet;
+}
+
+/* 약품 정보 스타일링 */
+main {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#medicines {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+#medicines p {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+}

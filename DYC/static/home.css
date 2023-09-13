@@ -1,0 +1,95 @@
+/* CSS 코드를 여기에 작성합니다. */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+}
+
+#header {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+#logo img {
+    width: 200px;
+    height: auto;
+}
+
+#menu {
+    margin-right: 20px;
+}
+
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#menu ul li {
+    margin-right: 30px;
+}
+
+#menu ul li a {
+    color: blue;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+#menu ul li a:hover {
+    color: violet;
+}
+
+#symptoms {
+    border: 1px solid #ccc;
+    border-radius: 25px; /* 모서리를 동그랗게 변경 */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#symptoms label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#symptoms input[type="text"] {
+    flex-grow: 0.33;
+    padding: 5px;
+    border: 1px solid blue;
+    border-radius: 25px; /* 모서리를 동그랗게 변경 */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#symptoms button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#warning p {
+    margin-top: 10px;
+    font-size: 14px; /* 글자 크기 작게 변경 */
+    text-decoration: underline;
+}
+
+#warning {
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+}

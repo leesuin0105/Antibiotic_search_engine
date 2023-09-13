@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>의료학습</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+    {% include 'menu.html' %}
+
+    <main>
+        <section id="symptoms">
+            <label for="symptomText">증상:</label>
+            <input type="text" id="symptomText" placeholder="증상을 입력하세요">
+            <button onclick="fetchDataFromPython()">검색</button>
+        </section>
+        <section class="results">
+            <div id="diagnosisResults">
+                <!-- 검색 결과를 여기에 표시할 수 있습니다. -->
+            </div>
+        </section>
+        <section id="warning">
+            <p>*입력 시 주의사항: 콤마(,) 다음에 띄어쓰기 금지(ex_기침, 발열, 두통)</p>
+        </section>
+    </main>
+    <script>
+        async function fetchDataFromPython() {
+            try {
+                const symptomText = document.getElementById('symptomText').value;
+                console.log('검색어:', symptomText);
+
+                const response = await fetch('/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `symptom=${symptomText}`,
+                });
+
+                const data = await response.json();
+                console.log('검색 결과:', data);
+
+                const diagnosisResults = document.getElementById('diagnosisResults');
+                diagnosisResults.innerHTML = '';
+
+                if (data.length > 0) {
+                    for (const item of data) {
+                        diagnosisResults.innerHTML += `<p>검색 결과: ${item['진단명(한국어)']}</p>`;
+                    }
+                } else {
+                    diagnosisResults.innerHTML = '<p>검색 결과가 없습니다.</p>';
+                }
+
+                window.location.href = `/result?diagnosis=${symptomText}`;
+
+            } catch (error) {
+                console.error('데이터를 가져오는 중 오류가 발생했습니다:', error);
+            }
+        }
+    </script>
+</body>
+</html>
